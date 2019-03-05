@@ -173,6 +173,7 @@ public class ost { // optimalSearchTree
             for (int i = left; i < right; i++) {
                 if (sum < weight / 2 && sum + arr.get(i).wNode >= weight / 2) {
                     find = i;
+                    break;
                 } else {
                     sum = sum + arr.get(i).wNode;
                 }

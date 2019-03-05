@@ -28,13 +28,13 @@ public class OptimalSearchTreeApp {
 
     public static void main(String[] args) {
 
-        String[] words = parseFile("src\\optimalsearchtreeapp\\wiki.train.tokens");
+        String[] words = parseFile("src\\optimalsearchtreeapp\\wiki.test.train.tokens"); //wiki.train.tokens > 3 минут
 
         ost a1,a2;
         a1 = new ost();
         a2 = new ost();
 
-        for (int i = 0; i < words.length / 5; i++) { // считаем на части dataset
+        for (int i = 0; i < words.length; i++) {
             a1.insert(words[i]);
             a2.insert(words[i]);
         }
