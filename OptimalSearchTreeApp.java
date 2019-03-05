@@ -40,12 +40,12 @@ public class OptimalSearchTreeApp {
         }
 
         long timeStartA1 = System.currentTimeMillis();
-        a1.Algo1(); // Algo1 OR Algo2
+        a1.Algo1();
         long timeStopA1 = System.currentTimeMillis() - timeStartA1;
         System.out.println("время построения дерева А1 " + timeStopA1 + " миллисекунд");
         
         long timeStartF1 = System.currentTimeMillis();
-        a1.find("dominic"); // Algo1 OR Algo2
+        a1.find("dominic");
         long timeStopF1 = System.currentTimeMillis() - timeStartF1;
         System.out.println("время поиска А1 " + timeStopF1 + " миллисекунд");  
         
@@ -54,12 +54,12 @@ public class OptimalSearchTreeApp {
         System.out.println("---");
 
         long timeStartA2 = System.currentTimeMillis();
-        a2.Algo2(); // Algo1 OR Algo2
+        a2.Algo2();
         long timeStopA2 = System.currentTimeMillis() - timeStartA2;
         System.out.println("время построения дерева А2 " + timeStopA2 + " миллисекунд");
         
         long timeStartF2 = System.currentTimeMillis();
-        a2.find("dominic"); // Algo1 OR Algo2
+        a2.find("dominic");
         long timeStopF2 = System.currentTimeMillis() - timeStartF2;
         System.out.println("время поиска А2 " + timeStopF2 + " миллисекунд");
         
