@@ -28,27 +28,25 @@ public class OptimalSearchTreeApp {
 
     public static void main(String[] args) {
 
-        String[] words = parseFile("src\\optimalsearchtreeapp\\wiki.test.train.tokens"); //wiki.train.tokens > 3 минут
+        String[] words = parseFile("src\\optimalsearchtreeapp\\wiki.train.tokens"); //wiki.train.tokens > 3 минут
 
-        ost a1,a2;
+        ost a1, a2;
         a1 = new ost();
         a2 = new ost();
 
-        for (int i = 0; i < words.length; i++) {
-            a1.insert(words[i]);
-            a2.insert(words[i]);
-        }
+        a1.insert(words);
+        a2.insert(words);
 
         long timeStartA1 = System.currentTimeMillis();
         a1.Algo1();
         long timeStopA1 = System.currentTimeMillis() - timeStartA1;
         System.out.println("время построения дерева А1 " + timeStopA1 + " миллисекунд");
-        
+
         long timeStartF1 = System.currentTimeMillis();
-        a1.find("dominic");
+        a1.find("Советская");
         long timeStopF1 = System.currentTimeMillis() - timeStartF1;
-        System.out.println("время поиска А1 " + timeStopF1 + " миллисекунд");  
-        
+        System.out.println("время поиска А1 " + timeStopF1 + " миллисекунд");
+
         System.out.println("Средневзвешенная высота A1 " + a1.HVA());
 
         System.out.println("---");
@@ -57,12 +55,12 @@ public class OptimalSearchTreeApp {
         a2.Algo2();
         long timeStopA2 = System.currentTimeMillis() - timeStartA2;
         System.out.println("время построения дерева А2 " + timeStopA2 + " миллисекунд");
-        
+
         long timeStartF2 = System.currentTimeMillis();
-        a2.find("dominic");
+        a2.find("Советская-2");
         long timeStopF2 = System.currentTimeMillis() - timeStartF2;
         System.out.println("время поиска А2 " + timeStopF2 + " миллисекунд");
-        
+
         System.out.println("Средневзвешенная высота A2 " + a2.HVA());
 
     }

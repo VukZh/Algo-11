@@ -18,6 +18,12 @@ public class ost { // optimalSearchTree
             sNode = s;
             hNode = 1;
         }
+
+        private Node(String s, int w) {
+            wNode = w;
+            sNode = s;
+            hNode = 1;
+        }
     }
 
     Node tree;
@@ -26,30 +32,25 @@ public class ost { // optimalSearchTree
     private int size = 0; // текущий размер
 
     public ost() {
-//        arr = new Node[maxSize];        
         arr = new BArray<Node>();
         tree = null;
     }
 
-    public void insert(String s) {
-        int f = DuplicateFind(s);
-        if (f == -1) {
-            arr.add(new Node(s));
-            size++;
-        } else {
-            Node tmp = arr.get(f);
-            tmp.wNode++;
-            arr.set(f, tmp);
-        }
-    }
+    public void insert(String[] inArr) {
 
-    public int DuplicateFind(String s) { // поиск повторений для вставки в массив
-        for (int i = 0; i < size; i++) {
-            if (arr.get(i).sNode.compareToIgnoreCase(s) == 0) {
-                return i;
-            }
+        AVLTree avlTree = new AVLTree(); // АВЛ дерево для ускоренного поиска повторов ключа
+        for (int i = 0; i < inArr.length; i++) { // вставка в дерево с одновременным подсчетом повторов
+            avlTree.insert(inArr[i]);
         }
-        return -1;
+        avlTree.preOrderArr(avlTree.rootAVLtree); // вывод массива узлов АВЛ дерева -> out
+
+//        System.out.println(" in " + inArr.length); // размер входного массива
+//        System.out.println(" out " + avlTree.sizeAVL); // размер числа узлов АВЛ дерева без повторов значений ключа
+        for (int i = 0; i < avlTree.sizeAVL; i++) {
+            Node tmp = new Node(avlTree.out.get(i).key, avlTree.out.get(i).count);
+            arr.add(tmp);
+            size++;
+        }
     }
 
     public String find(String s) { // поиск
@@ -89,6 +90,11 @@ public class ost { // optimalSearchTree
             }
             arr.set(in, temp);
         }
+
+//// вывод отсорированного массива по вероятности            
+//        for (int i = 0; i < size; i++) {
+//            System.out.println(i + " w " + arr.get(i).wNode + " s " + arr.get(i).sNode);
+//        }
     }
 
     private void insertionSortA2() { // предварительная сортировка массива объектов по полю ключа (для алгоритма 2)
@@ -102,6 +108,11 @@ public class ost { // optimalSearchTree
             }
             arr.set(in, temp);
         }
+
+//// вывод отсорированного массива по ключу     
+//        for (int i = 0; i < size; i++) {
+//            System.out.println(i + " w " + arr.get(i).wNode + " s " + arr.get(i).sNode);
+//        }
     }
 
     public float HVA() { // средневзвешанная высота
@@ -110,7 +121,6 @@ public class ost { // optimalSearchTree
         for (int i = 0; i < size; i++) {
             h += arr.get(i).wNode * arr.get(i).hNode;
             W += arr.get(i).wNode;
-//                System.out.println("s-" + arr[i].sNode + "    w-" + arr[i].wNode + "    h-" + arr[i].hNode);                
         }
         return (float) h / W;
     }
